@@ -69,8 +69,6 @@ print(methode_rectangle_python(50,0,1,1,2,3,4))
 
 
 
-
-
 def methode_trapeze_python(p1,p2,p3,p4,n,a,b):
     dx = (b-a)/n
     somme =  0.5 * (f(a, p1, p2, p3, p4) + f(b, p1, p2, p3, p4))
@@ -86,6 +84,8 @@ def methode_trapeze_numpy(p1,p2,p3,p4,n,a,b):
     return (dx/2) * np.sum(y[:-1]+ y[1:])
 
 
+def erreur(integrale):
+    return 100*abs((integrale - integration(1, 2, 3, 4, 0, 1))/integration(1, 2, 3, 4, 0, 1))
 
 
 
