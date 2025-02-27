@@ -13,21 +13,32 @@ print(integration_numerique)
 
 
 def methode_rectangle_numpy(n,xmin,xmax,p1,p2,p3,p4):
-    ni = n - 1 # nombre d'intervalles
+    x = np.linspace(xmin, xmax, n)  # Points d'évaluation
+    y = f(x, p1, p2, p3, p4)  # Valeurs de la fonction
 
-    x = np.linspace(xmin, xmax, n)
-    y = f(x,p1,p2,p3,p4)
-    plt.plot(x,y,"bo-")
+    dx = (xmax - xmin) / (n - 1)  # Largeur constante des rectangles
+    x_rect = x[:-1]  # Prendre x sauf le dernier point pour les bases des rectangles
+    y_rect = y[:-1]  # Hauteur des rectangles (valeur gauche)
 
-    integrale = 0
-    for i in range(ni):
-        integrale = integrale + y[i]*(x[i+1]-x[i])
-        x_rect = [x[i], x[i], x[i+1], x[i+1], x[i]]
-        y_rect = [0   , y[i], y[i]  , 0     , 0   ]
-        plt.plot(x_rect, y_rect,"r")
-    print("integrale =", integrale)
+    # Calcul de l'intégrale sans boucle
+    integrale = np.sum(y_rect * dx)
 
+    # Tracé de la courbe
+    plt.plot(x, y, "bo-", label="f(x)")
+
+    # Construction des coordonnées des rectangles sans boucle
+    X_rect = np.array([x_rect, x_rect, x_rect + dx, x_rect + dx, x_rect]).T
+    Y_rect = np.array([np.zeros_like(y_rect), y_rect, y_rect, np.zeros_like(y_rect), np.zeros_like(y_rect)]).T
+
+    # Tracé des rectangles
+    plt.plot(X_rect.T, Y_rect.T, "r")
+
+    plt.legend(["f(x)", "Rectangles"])
     plt.show()
+
+    print("intégrale =", integrale)
+
+plt.show()
 
 print(methode_rectangle_numpy(50,0,1,1,2,3,4))
 
@@ -47,7 +58,7 @@ def methode_rectangle_python(n, xmin, xmax, p1, p2, p3, p4):
         y_rect = [0, y_values[i], y_values[i], 0, 0]
         plt.plot(x_rect, y_rect, "r")
 
-    print("Intégrale =", integrale)
+    print("intégrale =", integrale)
     plt.show()
 
 
