@@ -1,4 +1,4 @@
-#Idées préliminaires
+# Idées préliminaires
 
 fonctions : 
 - input utilisateur 
