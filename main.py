@@ -85,6 +85,24 @@ def methode_trapeze_numpy(p1,p2,p3,p4,n,a,b):
     y = f(x,p1, p2, p3, p4)
     return (dx/2) * np.sum(y[:-1]+ y[1:])
 
+def methode_simpson_python(p1,p2,p3,p4,n,a,b):
+    dx = (b - a) / n
+    somme = (f(a,p1, p2, p3, p4) + f(b,p1, p2, p3, p4)) / 2 + 2 * f((a + dx / 2),p1, p2, p3, p4)
+    for i in range(1, n):
+        x_i = a + i * dx
+        somme = somme + f(x_i,p1, p2, p3, p4) + 2 * f((x_i + dx / 2),p1, p2, p3, p4)
+
+    return somme * dx / 3
+
+def methode_simpson_numpy(p1,p2,p3,p4,n,a,b):
+    dx = (b-a) / n
+    x = np.linspace(a,b,n)
+    y = f(x,p1, p2, p3, p4)
+    return (dx / 3) * (y[0] + y[-1] + 4 * np.sum(y[1:-1:2]) + 2 * np.sum(y[2:-2:2]))
+
+print (methode_simpson_python(1,2,3,4,500,0,1))
+
+print (methode_simpson_numpy(1,2,3,4,500,0,1))
 
 
 
