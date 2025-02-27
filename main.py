@@ -64,3 +64,6 @@ def methode_rectangle_python(n, xmin, xmax, p1, p2, p3, p4):
 
 print(methode_rectangle_python(50,0,1,1,2,3,4))
 
+def erreur(integrale):
+    return 100*abs((integrale - integration(1, 2, 3, 4, 0, 1))/integration(1, 2, 3, 4, 0, 1))
+
