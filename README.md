@@ -1,4 +1,4 @@
-#Fonctions implémentées
+# Fonctions implémentées
 - input utilisateur
   demande à l'utilisateur les paramètres des intégrations : coefficients du polynome, bornes et nombre des segments maximum d'intégration
   
@@ -37,6 +37,6 @@
   
 
 
-#Modules utilisés 
+# Modules utilisés 
 
 numpy, matplotlib, timeit, time, scipy 
