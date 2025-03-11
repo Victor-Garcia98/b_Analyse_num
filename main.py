@@ -94,7 +94,6 @@ def affichage_convergence_total(p1,p2,p3,p4,n_max,a,b):
         erreur_dict['simpson_numpy'].append(erreur(methode_simpson_numpy, p1, p2, p3, p4, n, a, b))
         erreur_dict['simpson_scipy'].append(erreur(methode_simpson_scipy, p1, p2, p3, p4, n, a, b))
 
-    # Tracer le graphique de la convergence
     plt.figure()
     for methode, error in erreur_dict.items():
         plt.plot(n_val, error, label=f"Méthode des {methode}", marker='+')
@@ -105,7 +104,6 @@ def affichage_convergence_total(p1,p2,p3,p4,n_max,a,b):
     plt.ylabel('Erreur par rapport au numérique')
     plt.title('Convergence des méthodes d\'intégration')
     plt.legend()
-    plt.grid(True)
     plt.show()
 
 def mesure_temps_execution(methode,p1, p2, p3, p4,n,a,b):
@@ -126,7 +124,6 @@ def affichage_temps_total(p1,p2,p3,p4,n_max,a,b):
         temps_dict['simpson_numpy'].append(mesure_temps_execution(methode_simpson_numpy, p1, p2, p3, p4, n, a, b))
         temps_dict['simpson_scipy'].append(mesure_temps_execution(methode_simpson_scipy, p1, p2, p3, p4, n, a, b))
 
-    # Tracer le graphique de la convergence
     plt.figure()
     for methode, temps in temps_dict.items():
         plt.plot(n_val, temps, label=f"Méthode des {methode}", marker='+')
@@ -137,12 +134,25 @@ def affichage_temps_total(p1,p2,p3,p4,n_max,a,b):
     plt.ylabel('temps d\'éxécution')
     plt.title('temps d\'éxécution des méthodes d\'intégration')
     plt.legend()
-    plt.grid(True)
     plt.show()
 
-if __name__ == "__main__":
+def demande_utilisateur():
+    print('Pour l\'étude comparative, nous allons vous demander dans l\'ordre les différents coefficient du polynome puis '
+          'le nombre de segments maximums envisagés et pour finir les bornes d\'intégration \n\n'
+          'le polynome est de la forme : P1 + P2 x + P3 x^2 + P4 x^3 = y')
+    p1 = int(input('p1 ='))
+    p2 = int(input('p2 ='))
+    p3 = int(input('p3 ='))
+    p4 = int(input('p4 ='))
+    n_max = int(input ('nombre de segemnts maximums = '))
+    a = int(input ('borne d\'intégration inférieure = '))
+    b = int(input('borne d\'intégration supérieure = '))
+    return p1,p2,p3,p4,n_max,a,b
 
-    affichage_convergence_total(1, 2, 3, 4, 1000, 0, 10)
+
+if __name__ == "__main__":
+    [p1,p2,p3,p4,n_max,a,b] = demande_utilisateur()
+    affichage_convergence_total(p1, p2, p3, p4, n_max, a, b)
     affichage_temps_total(1, 2, 3, 4, 1000, 0, 10)
 
 
