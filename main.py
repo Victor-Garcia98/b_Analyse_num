@@ -107,7 +107,7 @@ def affichage_convergence_total(p1,p2,p3,p4,n_max,a,b):
     plt.show()
 
 def mesure_temps_execution(methode,p1, p2, p3, p4,n,a,b):
-    return timeit.timeit(lambda: methode(a, b, n, p1, p2, p3, p4), number=1)
+    return timeit.timeit(lambda: methode(p1, p2, p3, p4, n, a, b), number=1)
 
 def affichage_temps_total(p1,p2,p3,p4,n_max,a,b):
     n_val = np.linspace(10,n_max,100)
@@ -153,7 +153,7 @@ def demande_utilisateur():
 if __name__ == "__main__":
     [p1,p2,p3,p4,n_max,a,b] = demande_utilisateur()
     affichage_convergence_total(p1, p2, p3, p4, n_max, a, b)
-    affichage_temps_total(1, 2, 3, 4, 1000, 0, 10)
+    affichage_temps_total(p1, p2, p3, p4, n_max, a, b)
 
 
 
